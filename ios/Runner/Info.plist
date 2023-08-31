@@ -64,5 +64,14 @@
 	<string>The application does not use this feature</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Your location will be used to determine qibla angle</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    	<key>NSAllowsArbitraryLoads</key>
+    	<true/>
+    	<key>NSAllowsArbitraryLoadsForMedia</key>
+    	<true/>
+	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Your location will be used to determine qibla angle</string>
 </dict>
 </plist>

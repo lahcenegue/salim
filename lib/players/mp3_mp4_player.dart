@@ -89,12 +89,19 @@ class _Mp3Mp4PlayerState extends State<Mp3Mp4Player> {
 
   @override
   Widget build(BuildContext context) {
-    double heightScreen = MediaQuery.of(context).size.height;
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           actions: [
             ButtonFavorite(id: widget.id, title: widget.title),
           ],
@@ -124,13 +131,14 @@ class _Mp3Mp4PlayerState extends State<Mp3Mp4Player> {
                     builder: (context, snapshot) {
                       final positionData = snapshot.data;
                       return ProgressBar(
-                        barHeight: 5,
+                        barHeight: widthScreen * 0.015,
                         baseBarColor: Colors.grey[600],
                         bufferedBarColor: Colors.grey,
                         progressBarColor: Colors.red,
                         thumbColor: Colors.red,
-                        timeLabelTextStyle: const TextStyle(
+                        timeLabelTextStyle: TextStyle(
                           color: Colors.black,
+                          fontSize: widthScreen * 0.025,
                           fontWeight: FontWeight.w600,
                         ),
                         progress: positionData?.position ?? Duration.zero,
@@ -155,7 +163,7 @@ class _Mp3Mp4PlayerState extends State<Mp3Mp4Player> {
               height: 8,
             ),
             SizedBox(
-              height: heightScreen * 0.22,
+              height: widthScreen * 0.22,
               child: ListView.builder(
                 physics: const ScrollPhysics(),
                 shrinkWrap: true,

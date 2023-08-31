@@ -57,11 +57,20 @@ class _PdfPlayerScreenState extends State<PdfPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
           actions: [
             IconButton(
               onPressed: () {

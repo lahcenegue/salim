@@ -2,36 +2,44 @@ import 'package:flutter/material.dart';
 
 Widget customCard({
   required String name,
+  required double width,
   required Function() onTap,
 }) {
   return Container(
-    margin: const EdgeInsets.only(
-      right: 25,
-      left: 25,
-      top: 16,
+    height: width * 0.12,
+    margin: EdgeInsets.only(
+      right: width * 0.05,
+      left: width * 0.05,
+      top: width * 0.035,
     ),
-    padding: const EdgeInsets.only(right: 27),
+    padding: EdgeInsets.only(right: width * 0.08, left: width * 0.02),
     decoration: BoxDecoration(
       color: const Color(0xffF1F0FD),
       borderRadius: BorderRadius.circular(8),
       boxShadow: [
         BoxShadow(
           color: Colors.grey.withOpacity(0.7),
-          offset: const Offset(3, 4),
+          offset: Offset(width * 0.007, width * 0.008),
           blurRadius: 5,
         ),
       ],
     ),
-    child: ListTile(
+    child: Center(
+      child: ListTile(
         title: Text(
           name,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(
-            fontSize: 16,
+          style: TextStyle(
+            fontSize: width * 0.032,
             fontWeight: FontWeight.w500,
           ),
         ),
-        trailing: const Icon(Icons.arrow_back_ios_new),
-        onTap: onTap),
+        trailing: Icon(
+          Icons.arrow_back_ios_new,
+          size: width * 0.05,
+        ),
+        onTap: onTap,
+      ),
+    ),
   );
 }

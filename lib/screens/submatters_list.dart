@@ -54,6 +54,7 @@ class _SubMattersListState extends State<SubMattersList> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     hvm.addListener(() {
       setState(() {});
     });
@@ -68,6 +69,7 @@ class _SubMattersListState extends State<SubMattersList> {
           if (index < matters.length) {
             return customCard(
               name: matters[index].name,
+              width: widthScreen,
               onTap: () {
                 Navigator.push(
                   context,

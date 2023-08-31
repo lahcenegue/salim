@@ -36,6 +36,7 @@ class _CategoriesListState extends State<CategoriesList> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     hvm.addListener(() {
       setState(() {});
     });
@@ -55,6 +56,7 @@ class _CategoriesListState extends State<CategoriesList> {
                 itemBuilder: (buildContext, index) {
                   return customCard(
                       name: hvm.listCateg![index].name,
+                      width: widthScreen,
                       onTap: () {
                         Navigator.push(
                           context,

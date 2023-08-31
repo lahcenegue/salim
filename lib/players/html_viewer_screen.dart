@@ -24,11 +24,20 @@ class _HtmlViwerScreenState extends State<HtmlViwerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
           actions: [
             ButtonFavorite(
               id: widget.id,
@@ -36,21 +45,25 @@ class _HtmlViwerScreenState extends State<HtmlViwerScreen> {
             ),
           ],
         ),
-        body: Scrollbar(
-          thickness: 10,
-          thumbVisibility: true,
-          interactive: true,
-          radius: const Radius.circular(08),
-          child: SingleChildScrollView(
-            child: Html(
-              data: widget.text,
-              style: {
-                "p": Style(
-                  // padding: const EdgeInsets.all(12),
-                  fontSize: FontSize(fontSize),
-                  textAlign: TextAlign.justify,
-                ),
-              },
+        body: Padding(
+          padding: const EdgeInsets.all(08),
+          child: Scrollbar(
+            thickness: 10,
+            thumbVisibility: true,
+            interactive: true,
+            radius: const Radius.circular(08),
+            child: SingleChildScrollView(
+              child: Html(
+                data: widget.text,
+                style: {
+                  "span": Style(
+                    padding: HtmlPaddings.symmetric(vertical: 08),
+                    margin: Margins.only(left: 08, right: 08),
+                    fontSize: FontSize(fontSize),
+                    textAlign: TextAlign.justify,
+                  ),
+                },
+              ),
             ),
           ),
         ),

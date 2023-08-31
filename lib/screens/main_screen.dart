@@ -7,16 +7,25 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(kAppName),
+          title: Text(
+            kAppName,
+            style: TextStyle(fontSize: widthScreen * 0.03),
+          ),
         ),
         body: Column(
           children: [
-            Image.asset(kHeader),
-            const SizedBox(height: 20),
+            Image.asset(
+              kHeader,
+              height: widthScreen * 0.5,
+              width: widthScreen,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(height: widthScreen * 0.02),
             const Expanded(
               child: CategoriesList(),
             ),

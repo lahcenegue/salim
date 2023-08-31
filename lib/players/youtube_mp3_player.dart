@@ -105,11 +105,20 @@ class _YoutubeMp3PlayerState extends State<YoutubeMp3Player> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.center,
+          ),
           actions: [
             ButtonFavorite(id: widget.id, title: widget.title),
           ],
@@ -170,13 +179,14 @@ class _YoutubeMp3PlayerState extends State<YoutubeMp3Player> {
                     builder: (context, snapshot) {
                       final positionData = snapshot.data;
                       return bar.ProgressBar(
-                        barHeight: 5,
+                        barHeight: widthScreen * 0.015,
                         baseBarColor: Colors.grey[600],
                         bufferedBarColor: Colors.grey,
                         progressBarColor: Colors.red,
                         thumbColor: Colors.red,
-                        timeLabelTextStyle: const TextStyle(
+                        timeLabelTextStyle: TextStyle(
                           color: Colors.white,
+                          fontSize: widthScreen * 0.025,
                           fontWeight: FontWeight.w600,
                         ),
                         progress: positionData?.position ?? Duration.zero,

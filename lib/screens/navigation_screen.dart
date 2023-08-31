@@ -20,6 +20,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   ];
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
@@ -30,6 +31,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
           selectedLabelStyle: TextStyle(
             color: kMainColor,
             fontWeight: FontWeight.bold,
+            fontSize: widthScreen * 0.025,
           ),
           currentIndex: selectedIndex,
           onTap: (value) => setState(() => selectedIndex = value),
@@ -38,6 +40,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Icon(
                 Icons.home,
                 color: kIconColor,
+                size: widthScreen * 0.04,
               ),
               label: 'الرئيسية',
             ),
@@ -45,6 +48,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Icon(
                 Icons.favorite,
                 color: kIconColor,
+                size: widthScreen * 0.04,
               ),
               label: 'المفضلة',
             ),
@@ -52,6 +56,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
               icon: Icon(
                 Icons.download,
                 color: kIconColor,
+                size: widthScreen * 0.04,
               ),
               label: 'التحميلات',
             ),

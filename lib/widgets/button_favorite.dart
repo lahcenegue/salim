@@ -31,6 +31,7 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Row(
       children: [
         IconButton(
@@ -60,15 +61,21 @@ class _ButtonFavoriteState extends State<ButtonFavorite> {
           icon: Icon(
             Icons.favorite_rounded,
             color: isFavorite ? Colors.red : Colors.white,
+            size: widthScreen * 0.04,
           ),
         ),
         IconButton(
           onPressed: () async {
+            final box = context.findRenderObject() as RenderBox?;
             await Share.share(
                 'اسم المحاضرة: ${widget.title} \n $kUrl/play/${widget.id}',
+                sharePositionOrigin: box!.localToGlobal(Offset.zero) & box.size,
                 subject: 'Look what I made!');
           },
-          icon: const Icon(Icons.share_rounded),
+          icon: Icon(
+            Icons.share_rounded,
+            size: widthScreen * 0.04,
+          ),
         ),
       ],
     );

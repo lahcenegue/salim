@@ -54,11 +54,21 @@ class _YoutubeVideoPlayerScreenState extends State<YoutubeVideoPlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
         appBar: AppBar(
-          title: Text(widget.title),
+          title: Text(
+            widget.title,
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
           actions: [
             ButtonFavorite(id: widget.id, title: widget.title),
           ],

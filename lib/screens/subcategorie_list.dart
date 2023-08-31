@@ -13,11 +13,13 @@ class SubCategoriesList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return ListView.builder(
       itemCount: listSubCateg.length,
       itemBuilder: (buildContext, index) {
         return customCard(
             name: listSubCateg[index].name,
+            width: widthScreen,
             onTap: () {
               Navigator.push(
                 context,

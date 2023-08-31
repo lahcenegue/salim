@@ -78,7 +78,6 @@ class _Mp3PlayerScreenState extends State<Mp3PlayerScreen> {
 
   @override
   Widget build(BuildContext context) {
-    double heightScreen = MediaQuery.of(context).size.height;
     double widthScreen = MediaQuery.of(context).size.width;
     return Directionality(
       textDirection: TextDirection.rtl,
@@ -86,10 +85,10 @@ class _Mp3PlayerScreenState extends State<Mp3PlayerScreen> {
         appBar: AppBar(
           title: Text(
             widget.title,
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+              fontSize: widthScreen * 0.03,
+              fontWeight: FontWeight.w500,
             ),
             textAlign: TextAlign.center,
           ),
@@ -105,24 +104,25 @@ class _Mp3PlayerScreenState extends State<Mp3PlayerScreen> {
                 borderRadius: BorderRadius.circular(10),
                 child: Image.network(
                   kSoundImage,
-                  height: heightScreen * 0.25,
-                  width: widthScreen * 0.6,
+                  height: widthScreen * 0.4,
+                  width: widthScreen * 0.8,
                   fit: BoxFit.cover,
                 ),
               ),
-              const SizedBox(height: 20),
+              SizedBox(height: widthScreen * 0.04),
               StreamBuilder(
                 stream: _positionDataStream,
                 builder: (context, snapshot) {
                   final positionData = snapshot.data;
                   return ProgressBar(
-                    barHeight: 8,
+                    barHeight: widthScreen * 0.015,
                     baseBarColor: Colors.grey[600],
                     bufferedBarColor: Colors.grey,
                     progressBarColor: Colors.red,
                     thumbColor: Colors.red,
-                    timeLabelTextStyle: const TextStyle(
+                    timeLabelTextStyle: TextStyle(
                       color: Colors.black,
+                      fontSize: widthScreen * 0.025,
                       fontWeight: FontWeight.w600,
                     ),
                     progress: positionData?.position ?? Duration.zero,
@@ -138,7 +138,7 @@ class _Mp3PlayerScreenState extends State<Mp3PlayerScreen> {
               ),
               const Spacer(),
               SizedBox(
-                height: heightScreen * 0.22,
+                height: widthScreen * 0.4,
                 child: ListView.builder(
                   physics: const ScrollPhysics(),
                   shrinkWrap: true,
@@ -170,12 +170,13 @@ class Controls extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconButton(
           onPressed: audioPlayer.seekToNext,
-          iconSize: 60,
+          iconSize: widthScreen * 0.1,
           color: audioLength <= 1 ? Colors.grey[700] : Colors.black,
           icon: const Icon(Icons.skip_next_rounded),
         ),
@@ -188,28 +189,34 @@ class Controls extends StatelessWidget {
             if (!(playing ?? false)) {
               return IconButton(
                 onPressed: audioPlayer.play,
-                iconSize: 80,
+                iconSize: widthScreen * 0.14,
                 color: Colors.black,
-                icon: const Icon(Icons.play_arrow_rounded),
+                icon: Icon(
+                  Icons.play_arrow_rounded,
+                  size: widthScreen * 0.14,
+                ),
               );
             } else if (processingState != ProcessingState.completed) {
               return IconButton(
                 onPressed: audioPlayer.pause,
-                iconSize: 80,
+                iconSize: widthScreen * 0.14,
                 color: Colors.black,
-                icon: const Icon(Icons.pause_rounded),
+                icon: Icon(
+                  Icons.pause_rounded,
+                  size: widthScreen * 0.14,
+                ),
               );
             }
-            return const Icon(
+            return Icon(
               Icons.play_arrow_rounded,
-              size: 80,
+              size: widthScreen * 0.14,
               color: Colors.black,
             );
           },
         ),
         IconButton(
           onPressed: audioPlayer.seekToPrevious,
-          iconSize: 60,
+          iconSize: widthScreen * 0.1,
           color: audioLength <= 1 ? Colors.grey[700] : Colors.black,
           icon: const Icon(Icons.skip_previous_rounded),
         ),

@@ -44,6 +44,7 @@ class _CategorieDetailState extends State<CategorieDetail> {
 
   @override
   Widget build(BuildContext context) {
+    double widthScreen = MediaQuery.of(context).size.width;
     hvm.addListener(() {
       setState(() {});
     });
@@ -64,29 +65,35 @@ class _CategorieDetailState extends State<CategorieDetail> {
             appBar: AppBar(
               elevation: 0,
               shadowColor: Colors.white,
-              title: Text(widget.name),
+              title: Text(
+                widget.name,
+                style: TextStyle(fontSize: widthScreen * 0.03),
+              ),
               bottom: PreferredSize(
-                preferredSize: Size.fromHeight(AppBar().preferredSize.height),
+                preferredSize: Size(widthScreen, widthScreen * 0.12),
                 child: Container(
                   color: const Color(0xFFfafafa),
-                  height: 50,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 20,
-                    vertical: 8,
+                  height: widthScreen * 0.1,
+                  padding: EdgeInsets.symmetric(
+                    horizontal: widthScreen * 0.05,
+                    vertical: widthScreen * 0.01,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(
-                        30,
+                        widthScreen * 0.05,
                       ),
                       color: Colors.grey[200],
                     ),
                     child: TabBar(
                       labelColor: Colors.white,
                       unselectedLabelColor: Colors.black,
+                      labelStyle: TextStyle(
+                        fontSize: widthScreen * 0.03,
+                      ),
                       indicator: BoxDecoration(
                         borderRadius: BorderRadius.circular(
-                          30,
+                          widthScreen * 0.05,
                         ),
                         color: kMainColor,
                       ),
